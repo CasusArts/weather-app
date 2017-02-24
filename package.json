@@ -1,0 +1,29 @@
+{
+  "name": "weather-app",
+  "version": "0.1.0",
+  "description": "freecodecamp intermediate frontend project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CasusArts/weather-app.git"
+  },
+  "keywords": [
+    "freecodecamp",
+    "api",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": "Fiodor Gorobet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CasusArts/weather-app/issues"
+  },
+  "homepage": "https://github.com/CasusArts/weather-app#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
