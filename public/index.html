@@ -13,16 +13,36 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="../node_modules/html5shiv/src/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
   <body>
-    <h1>Weather App</h1>
+    <header>
+      <h1>Weather App</h1>
+    </header>
+
+    <main>
+      <div id="geo"></div>
+      <div class="temperature">
+
+      </div>
+      <div class="location">
+
+      </div>
+      <div class="wind">
+
+      </div>
+    </main>
+
+    <footer>
+
+    </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!--<script src="scripts/geo.js"></script>-->
 	<script src="scripts/app.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
   </body>
