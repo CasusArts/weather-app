@@ -9,38 +9,33 @@ $(document).ready(function () {
 
   function success(pos) {
     var html = '';
+    const API_KEY = 'a8f6d380da1dc07ada4a449108144813';
 
     var crd = pos.coords;
     var lat = crd.latitude;
     var lon = crd.longitude;
 
     var loc = [lat, lon];
-    // var loc = {
-    //   lat: lat,
-    //   lon: lon
-    // };
 
+    // const weahter = $.get(
+    //   "https://api.darksky.net/forecast/" + encodeURI(API_KEY)  + '/' + encodeURI(lat) + ',' + encodeURI(lon)
+    // );
 
+    const weather = $.getJSON('../data/city.list.json', function (json) {
+      // return json;
+    });
 
+    console.log(weahter);
     html += "<strong>Lat:</strong> " + lat + " " + "<strong>Lon:</strong> " + lon;
     $('.location').html(html);
-
-  }
-
-  function getLocation() {
-    if (navigator.geolocation) {
-      // navigator.geolocation.getCurrentPosition(showPosition);
-
-    } else {
-      geo.innerHTML = "<h3 class='alert'>Geolocation is not supportet by you'r browser</h3>";
-    }
   }
 
   function error() {
     if (!navigator.geolocation) {
       $('.location').html('<h3>Can\'t get you\'r position.</h3>');
+    } else if (!navigator.permission) {
+      $('.location').html('<h3>Please permit using geolocation service in browser.</h3>');
     }
   }
   navigator.geolocation.getCurrentPosition(success, error, options);
-})
-
+});
