@@ -26,6 +26,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "html5shiv": "^3.7.3",
-    "jquery": "^1.12.4"
+    "jquery": "^1.12.4",
+    "unirest": "^0.5.1"
   }
 }
