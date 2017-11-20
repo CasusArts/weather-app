@@ -1,41 +1,53 @@
-$(document).ready(function () {
-  //var geo = document.getElementById("geo");
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
 
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
+function success(pos) {
+  var html = '';
 
-  function success(pos) {
-    var html = '';
-    const API_KEY = 'a8f6d380da1dc07ada4a449108144813';
+  const crd = pos.coords;
+  const lat = crd.latitude;
+  const lon = crd.longitude;
 
-    var crd = pos.coords;
-    var lat = crd.latitude;
-    var lon = crd.longitude;
+  getWeather(lat, lon);
 
-    var loc = [lat, lon];
+  html += "<strong>Lat:</strong> " + lat + " " + "<strong>Lon:</strong> " + lon;
+  $('.location').html(html);
+}
 
-    // const weahter = $.get(
-    //   "https://api.darksky.net/forecast/" + encodeURI(API_KEY)  + '/' + encodeURI(lat) + ',' + encodeURI(lon)
-    // );
-
-    const weather = $.getJSON('../data/city.list.json', function (json) {
-      // return json;
-    });
-
-    console.log(weahter);
-    html += "<strong>Lat:</strong> " + lat + " " + "<strong>Lon:</strong> " + lon;
-    $('.location').html(html);
+function error() {
+  if (!navigator.geolocation) {
+    $('.location').html('<h3>Can\'t get you\'r position.</h3>');
+  } else if (!navigator.permission) {
+    $('.location').html('<h3>Please permit using geolocation service in browser.</h3>');
   }
+}
 
-  function error() {
-    if (!navigator.geolocation) {
-      $('.location').html('<h3>Can\'t get you\'r position.</h3>');
-    } else if (!navigator.permission) {
-      $('.location').html('<h3>Please permit using geolocation service in browser.</h3>');
-    }
-  }
+function getWeather(lat, lon) {
+
+  const url = "https://fcc-weather-api.glitch.me/api/current?lat=" + lat + "&lon=" + lon;
+  const request = new Request(url, {
+    method: "GET",
+    mode: "cors",
+    redirect: "follow",
+    headers: new Headers({
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json"
+    }),
+  });
+
+  fetch(request).then(data => {
+    return data.json();
+  }).then(data => {
+    console.log(data);
+  }).catch(err => {
+    console.error(err);
+  });
+}
+
+
+window.addEventListener("load", () => {
   navigator.geolocation.getCurrentPosition(success, error, options);
 });
