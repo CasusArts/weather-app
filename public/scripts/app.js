@@ -7,13 +7,12 @@ var options = {
 function success(pos) {
   var html = '';
 
-  const crd = pos.coords;
-  const lat = crd.latitude;
-  const lon = crd.longitude;
+  const coordinates = getCoordinates(pos);
 
-  getWeather(lat, lon);
+  const weatherData = getWeather(coordinates.lat, coordinates.lon);
+  console.log("Weather data:\n" + weatherData);
 
-  html += "<strong>Lat:</strong> " + lat + " " + "<strong>Lon:</strong> " + lon;
+  html += "<strong>Lat:</strong> " + coordinates.lat + " " + "<strong>Lon:</strong> " + coordinates.lon;
   $('.location').html(html);
 }
 
@@ -23,6 +22,14 @@ function error() {
   } else if (!navigator.permission) {
     $('.location').html('<h3>Please permit using geolocation service in browser.</h3>');
   }
+}
+
+function getCoordinates(pos) {
+
+  return {
+    lat: pos.coords.latitude,
+    lon: pos.coords.longitude,
+  };
 }
 
 function getWeather(lat, lon) {
@@ -41,7 +48,9 @@ function getWeather(lat, lon) {
   fetch(request).then(data => {
     return data.json();
   }).then(data => {
-    console.log(data);
+    const weather = data;
+    return JSON.parse(weather);
+    // console.log(data);
   }).catch(err => {
     console.error(err);
   });
